@@ -3,13 +3,15 @@ import { DerivWSProvider } from './deriv-ws-provider';
 import { Toaster } from '@/components/ui/sonner';
 import ViewportScaler from './ViewportScaler';
 import { EnvCheck } from './env-check';
+import { Sidebar } from './sidebar';
 
 /**
  * Shared layout wrapper for all template apps.
  *
- * Composes theme provider, mobile viewport scaling, and toast notifications
- * in a single import. Template `app/layout.tsx` files should wrap their
- * children with this component instead of manually composing these pieces.
+ * Composes theme provider, mobile viewport scaling, sidebar navigation,
+ * and toast notifications in a single import. Template `app/layout.tsx`
+ * files should wrap their children with this component instead of manually
+ * composing these pieces.
  *
  * Usage in a template's app/layout.tsx:
  *
@@ -24,12 +26,21 @@ import { EnvCheck } from './env-check';
  * Notes:
  * - ViewportScaler is mobile-only (active below the `lg` / 1024px breakpoint).
  * - Toaster sits outside ViewportScaler so toasts are never CSS-transformed.
+ * - Sidebar is rendered inside ViewportScaler on mobile, and as a sticky
+ *   side panel on desktop alongside the main content area.
  */
 export function TemplateLayout({ children }: { children: React.ReactNode }) {
   return (
     <Providers>
       <DerivWSProvider>
-        <ViewportScaler>{children}</ViewportScaler>
+        <ViewportScaler>
+          <div className="flex flex-col lg:flex-row lg:min-h-screen">
+            <Sidebar />
+            <main className="flex-1 flex flex-col min-w-0 max-lg:min-h-dvh">
+              {children}
+            </main>
+          </div>
+        </ViewportScaler>
       </DerivWSProvider>
       <Toaster />
       <EnvCheck />

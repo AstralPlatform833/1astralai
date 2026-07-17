@@ -5,7 +5,6 @@ import { inter, FONT_CLASS_MAP } from '@/lib/fonts';
 import { TemplateLayout } from '@/components/custom/template-layout';
 import { LogoSrcProvider } from '@/components/custom/logo-src-provider';
 import '@/app/globals.css';
-import './globals.css';
 import './custom.css';
 
 export function generateMetadata(): Metadata {
