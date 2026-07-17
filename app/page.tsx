@@ -32,6 +32,7 @@ export default function DigitsPage() {
       lastDigit={trading.lastDigit}
       digitStats={trading.digitStats}
       pipSize={trading.pipSize}
+      prices={trading.prices}
       tradeType={trading.tradeType}
       setTradeType={trading.setTradeType}
       contractMode={trading.contractMode}

@@ -57,6 +57,7 @@ interface UseDigitsTradingReturn {
   sellingId: number | null;
   sellError: string | null;
   clearSellError: () => void;
+  prices: number[];
 }
 
 export type UseDigitsTradingParams = Pick<UseBaseTradingParams, 'ws' | 'isConnected' | 'isExhausted' | 'isAuthenticated' | 'onAuthWSFailed'>;
@@ -197,5 +198,6 @@ export function useDigitsTrading({ ws, isConnected, isExhausted, isAuthenticated
     sellingId,
     sellError,
     clearSellError,
+    prices,
   };
 }
